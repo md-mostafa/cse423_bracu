@@ -1,4 +1,4 @@
-package demo;
+package Lab1;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;

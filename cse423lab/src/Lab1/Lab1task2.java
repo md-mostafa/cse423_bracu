@@ -1,5 +1,4 @@
-package demo;
-
+package Lab1;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
@@ -11,23 +10,21 @@ import java.lang.Math;
 import javax.swing.JFrame;
 import java.util.Random;
 
-
-
-public class Demo {
-
-    public static void main(String args[]) {
+public class Lab1task2 {
+     public static void main(String args[]) {
         // getting the capabilities object of GL2 profile
         final GLProfile profile = GLProfile.get(GLProfile.GL2);
         GLCapabilities capabilities = new GLCapabilities(profile);
         // The canvas
         final GLCanvas glcanvas = new GLCanvas(capabilities);
         //ThirdGLEventListener b = new ThirdGLEventListener();
-        lab1 l = new lab1();
+        //lab1 l = new lab1();
+        task2 t2 = new task2();
         //glcanvas.addGLEventListener(b);
-        glcanvas.addGLEventListener(l);
+        glcanvas.addGLEventListener(t2);
         glcanvas.setSize(400, 400);
         // creating frame
-        final JFrame frame = new JFrame("Demo");
+        final JFrame frame = new JFrame("Draw a house");
         // adding canvas to frame
         frame.add(glcanvas);
         frame.setSize(1000, 480);
@@ -35,7 +32,7 @@ public class Demo {
     }
 }
 
-class lab1 implements GLEventListener {
+class task2 implements GLEventListener {
     private GLU glu;
     public void init(GLAutoDrawable gld) {
         GL2 gl = gld.getGL().getGL2();
@@ -51,69 +48,8 @@ class lab1 implements GLEventListener {
     public void display(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();
 
-        draw50points(gl);
         drawHouse(gl);
-        drawTails(gl);
    
-    }
-    
-    private void draw50points(GL2 gl){
-        gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
-        gl.glColor3d(1, 0, 0);
-        gl.glPointSize(2.0f);
-        gl.glBegin(GL2.GL_POINTS);  
-        Random rd = new Random();
-        int lowerBound = 1;
-        int upperBound = 51;
-        for (int i = 0; i < 50; i++) {
-            int x = rd.nextInt(upperBound);
-            int y = rd.nextInt(upperBound);
-
-            gl.glVertex2d(x, y);
-        }
-        gl.glEnd();
-    }
-    
-    private void drawTails(GL2 gl){
-        gl.glBegin(GL2.GL_POINTS);
-        gl.glPointSize(3.0f);
-        gl.glColor3d(1, 0, 0);
-        
-        DDA(gl, 150, 100, 150, -100, false); //vertical straight line
-        DDA(gl, 80, 100, 230, 100, true);   //horizontal dashed line
-        gl.glEnd();
-    }
-    
-    private void DDA(GL2 gl, float x1, float y1, float x0, float y0, boolean d){
-        
-      
-        float dx = x1 - x0;
-        float dy = y1 - y0;
-        
-        float steps = Math.abs(dx) > Math.abs(dy) ? Math.abs(dx) : Math.abs(dy);
-        
-        float xinc = dx/ (float) steps;
-        float yinc = dy/ (float) steps;
-        
-        float x = x0;
-        float y = y0;
-        
-        for(int i =0; i<=steps; i++){
-            
-            if(d){
-                if(i%2==0){
-                   gl.glVertex2d((float) x, (float) y);
-                }
-                x += xinc;
-                y += yinc;
-            }else{
-               gl.glVertex2d((float) x, (float) y);
-               x += xinc;
-               y += yinc;
-            }
-            
-        }
-        
     }
     
     

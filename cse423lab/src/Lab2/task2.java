@@ -42,8 +42,7 @@ public class task2 implements GLEventListener {
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
         
         
-        DrawHouse(gl);      //this will draw house
-      
+        DrawHouse(gl);      //this will draw house 
     }
 
     @Override
@@ -55,7 +54,6 @@ public class task2 implements GLEventListener {
         //do nothing
     }
     
-  
     public void DrawHouse(GL2 gl) {
         DrawMidPointLine(gl, -260, 150, -140, 255); //upper triangle
         DrawMidPointLine(gl, -20, 150, -140, 255); //upper triangle
